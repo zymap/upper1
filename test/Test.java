@@ -5,11 +5,7 @@ import sun.plugin2.applet.context.InitialJNLPExecutionContext;
  */
 public class Test {
     public static void main(String[] args) {
-       String a = "377";
-        System.out.println(a.length());
-        System.out.println(a.charAt(0));
-        System.out.println(a.charAt(1));
-       String b = "" + a.charAt(a.length()-2)+a.charAt(a.length()-1);
-        System.out.println(b);
+        String ss = "680136321100006803083235b43a343333337716";
+        String sss = "680136321100006803083235b43a343333333334b935333333383334483633333393559334c733383433bf16";
     }
 }

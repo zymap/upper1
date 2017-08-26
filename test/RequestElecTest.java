@@ -18,5 +18,8 @@ public class RequestElecTest {
         String result = elec.createCommand(e);
         System.out.println(result);
 
+
+
+        //680136321100006803083235b43a343333337716  发送的十六进制数
     }
 }
