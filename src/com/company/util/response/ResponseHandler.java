@@ -1,4 +1,4 @@
-package com.company.util;
+package com.company.util.response;
 
 /**
  * Created by zy on 17-8-26.

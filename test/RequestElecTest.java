@@ -1,5 +1,5 @@
 import com.company.pojo.Elec;
-import com.company.util.RequestElec;
+import com.company.util.request.RequestElec;
 
 /**
  * Created by zy on 17-8-26.
