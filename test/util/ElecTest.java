@@ -1,3 +1,5 @@
+package util;
+
 import com.company.pojo.Elec;
 
 /**
