@@ -36,6 +36,19 @@ public class Onephase {
         return result;
     }
 
+    public String getUnit(){
+        return onephasetable[UNIT];
+    }
+
+    public String getUseElectric(){
+        return onephasetable[USEELECTRIC]+onephasetable[USEELECTRIC+1];
+    }
+
+
+    public String getElectricty(){
+        return onephasetable[ELECTRIC] + "." +onephasetable[ELECTRIC+1];
+    }
+
     public String getVoltage(){
         char[] chars = onephasetable[VOLTAGE+1].toCharArray();
         return onephasetable[VOLTAGE] + chars[0] + "." +chars[1];
