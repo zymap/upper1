@@ -5,9 +5,10 @@ package com.company.pojo;
  */
 public class Elec {
     private String id;                //序号
-    private String elec_name;       //表号
+    private String elec_name;         //表号
     private String control;           //控制
-    private String command;        //指令
+    private String command;           //指令
+    private String _byte;             //byte
 
     public String getId() {
         return id;
