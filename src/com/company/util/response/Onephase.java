@@ -1,82 +1,64 @@
 package com.company.util.response;
 
+import com.company.util.compute.HexCompute;
+
 /**
- * Created by zy on 17-8-26.
+ * create by zy on 17-8-26 upper.
  */
 public class Onephase {
-    private final int REQUEST_LENGTH = 36;
-    private final int END_LENGTH = 4;
-    private final static String SUBTRACTOR = "33";
-    private final static int ONEPHASERESPONSESIZE = 24;
-    private String[] onephasetable;
-    private final int POWER = 4;
-    private final int ELECTRIC = 5;
-    private final int VOLTAGE = 7;
-    private final int USEELECTRIC = 12;
-    private final int UNIT = 14;
-    private final int HOUSEHOLD = 15;
+    private final static int REQUEST_LENGTH = 36;        //请求长度
+    private final static int END_LENGTH = 4;             //尾部四位数据不解析
+    private final static int ONE_PHASE_RESPONSE_SIZE = 24;  //电量
+    private static String[] ONE_PHASE_TABLE;               //单相表
+    private final static int POWER = 4;                  //%
+    private final static int ELECTRIC = 5;               //电流
+    private final static int VOLTAGE = 7;                //电压
+    private final static int USE_ELECTRIC = 12;           //用电量
+    private final static int UNIT = 14;                  //单元
+    private final static int HOUSEHOLD = 15;             //户
 
-    public String split(String datasource){
-        int begin = REQUEST_LENGTH;
+    public static String split(String datasource){
         int end = datasource.length()-END_LENGTH;
-        String result = datasource.substring(begin,end);
-        compute(result);
+        String result = datasource.substring(REQUEST_LENGTH,end);
+        ONE_PHASE_TABLE = HexCompute.minu(result, ONE_PHASE_RESPONSE_SIZE);
         return result;
     }
 
-    public String getElectric(){
+    public static String getElectric(){
         String result = "";
         for (int i = 4; i > 0; i--){
             if (i == 3){
-                result += onephasetable[ONEPHASERESPONSESIZE-i]+".";
+                result += ONE_PHASE_TABLE[ONE_PHASE_RESPONSE_SIZE -i]+".";
             }else {
-                result += onephasetable[ONEPHASERESPONSESIZE-i];
+                result += ONE_PHASE_TABLE[ONE_PHASE_RESPONSE_SIZE -i];
             }
         }
         return result;
     }
 
-    public String getUnit(){
-        return onephasetable[UNIT];
+    public static String getUnit(){
+        return ONE_PHASE_TABLE[UNIT];
     }
 
-    public String getUseElectric(){
-        return onephasetable[USEELECTRIC]+onephasetable[USEELECTRIC+1];
+    public static String getUseElectric(){
+        return ONE_PHASE_TABLE[USE_ELECTRIC]+ ONE_PHASE_TABLE[USE_ELECTRIC +1];
     }
 
 
-    public String getElectricty(){
-        return onephasetable[ELECTRIC] + "." +onephasetable[ELECTRIC+1];
+    public static String getElectricity(){
+        return ONE_PHASE_TABLE[ELECTRIC] + "." + ONE_PHASE_TABLE[ELECTRIC+1];
     }
 
-    public String getVoltage(){
-        char[] chars = onephasetable[VOLTAGE+1].toCharArray();
-        return onephasetable[VOLTAGE] + chars[0] + "." +chars[1];
+    public static String getVoltage(){
+        char[] chars = ONE_PHASE_TABLE[VOLTAGE+1].toCharArray();
+        return ONE_PHASE_TABLE[VOLTAGE] + chars[0] + "." +chars[1];
     }
 
-    public String getHouseHold(){
-        return onephasetable[HOUSEHOLD]+onephasetable[HOUSEHOLD+1];
+    public static String getHouseHold(){
+        return ONE_PHASE_TABLE[HOUSEHOLD]+ ONE_PHASE_TABLE[HOUSEHOLD+1];
     }
 
-    public String getPower(){
-        return onephasetable[POWER];
-    }
-
-    private void compute(String var){
-        String[] result = new String[ONEPHASERESPONSESIZE];
-        char[] chars = var.toCharArray();
-        int length = chars.length;
-        for (int i = length-1; i >= 0; i = i-2){
-            int pos = (length-i)/2;
-            String temp = "" + chars[i-1] + chars[i];
-            result[pos] = minu(temp);
-        }
-        this.onephasetable = result;
-    }
-
-    private String minu(String var){
-        int a = Integer.parseInt(var,16);
-        int b = a-Integer.parseInt(SUBTRACTOR,16);
-        return Integer.toHexString(b);
+    public static String getPower(){
+        return ONE_PHASE_TABLE[POWER];
     }
 }

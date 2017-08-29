@@ -1,7 +1,7 @@
 package util;
 
 /**
- * Created by zy on 17-8-27.
+ * created by zy on 17-8-27 .
  */
 public class Onephase {
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class Onephase {
         System.out.println(onephase.getUnit());
         System.out.println(onephase.getUseElectric());
         System.out.println(onephase.getVoltage());
-        System.out.println(onephase.getElectricty());
+        System.out.println(onephase.getElectricity());
         System.out.println(onephase.getPower());
 //        System.out.println(ssss);
 
